@@ -10,7 +10,7 @@ Instructions to run the app
 
 To install
 ==========
-   sh install.sh
+> sh install.sh
 
 To run the server
 =================
