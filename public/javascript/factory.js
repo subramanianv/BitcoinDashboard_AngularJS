@@ -8,7 +8,7 @@ BTC.factory('BTCRestAPI', ['$http', '$q',
           .then(function (response) {
             return response.data;
           }, function (error) {
-            return $q.reject(erro);
+            return $q.reject(error);
           });
       }
     };
