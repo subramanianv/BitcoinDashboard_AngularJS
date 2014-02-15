@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="BTC">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>BTC Dashboard</title>
+    <link rel="stylesheet" href="foundation/css/foundation.css">
+    <link rel="stylesheet" href="css/custom.css">
+  </head>
+  
+  <body ng-controller="BTCDashboardCtrl">
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="#">BTC Dashboard</a></h1>
+        </li>
+      </ul>
+
+      <section class="top-bar-section">
+        <ul class="left">
+          <li><a href="#">Get realtime bitcoin exchange rates in Canadian Dollar &amp; Indian Rupee</a></li>
+        </ul>
+      </section>
+    </nav>
+
+    
+    <div class="row" ng-show="!latestPrices.length">
+      <div class="large-12 columns">
+        <h4>Fetching....</h4>
+        <img src="ajax-loader.gif">
+      </div>
+    </div>
+
+
+    <div ng-show="latestPrices.length" ng-cloak>
+      <div class="row">
+          &nbsp;
+      </div>
+      <div class="row">
+        <div class="large-4 columns">  
+          <b>CAD (1 BTC =)</b>
+        </div>
+        <div class="large-4 columns">  
+          <b>INR (1 BTC =)</b>
+        </div>
+        <div class="large-4 columns">  
+          <b>Time (Latest at the Top)</b>
+        </div>
+      </div>
+      <div class="row">
+          &nbsp;
+      </div>
+      
+      <div ng-show="shouldShowLoadingGIF">
+        <div class="row">
+          <div class="large-offset-4 large-4 columns">
+            <img ng-show="shouldShowLoadingGIF" src="ajax-loader.gif">
+            <br/>
+          </div>
+        </div>
+        <div class="row">
+          &nbsp;
+        </div>
+      </div>
+
+
+
+      <div ng-repeat="price in latestPrices">
+        <div class="row customRow" ng-class="{topRow:$index==0}">
+          <div class="large-4 columns colPadding" ng-cloak>  
+            {{price.CAD | currency:'CAD$ '}}
+          </div>
+          <div class="large-4 columns colPadding" ng-cloak>  
+            {{price.INR | currency:'Rs.'}}
+          </div>
+          <div class="large-4 columns colPadding" ng-cloak>  
+            {{price.timestamp | convertToHumanReadableFormat}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="shouldShowTimer" ng-cloak>
+      <div class="large-offset-4 large-4 columns">
+        <br/>
+        The prices will be updated in <b>{{counter}}</b> seconds
+      </div>
+    </div>
+
+    <script src="foundation/js/vendor/custom.modernizr.js"></script>
+      <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+      <script src = "javascript/app.js"></script>
+      <script src = "javascript/factory.js"></script>
+      <script src = "javascript/filters.js"></script>
+      <script src = "javascript/controllers/BTCDashboardCtrl.js"></script>
+    <script>
+    document.write('<script src=' +
+    ('__proto__' in {} ? 'foundation/js/vendor/zepto' : 'foundation/js/vendor/jquery') +
+    '.js><\/script>')
+    </script>
+    <script src="foundation/js/foundation.min.js"></script>
+
+    <script>
+    $(document).foundation();
+    </script>
+  </body>
+</html>
