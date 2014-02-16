@@ -34,7 +34,7 @@ app.get('/getPrices', function (request, response) {
   */
 
   var getCurrentPriceForCurrency = function (currency, callback) {
-    https.get(createHTTPRequest(currency), function (res) {
+    var reqGET = https.get(createHTTPRequest(currency), function (res) {
       var resultStr = '';
       res.on('data', function (data) {
         process.stdout.write(data);
@@ -42,13 +42,17 @@ app.get('/getPrices', function (request, response) {
         callback(null, resultStr);
       });
 
-    }).on('error', function (e) {
-      console.error(e);
-      callback(e,null);
     });
+    reqGET.end();
+    reqGET.on('error', function (e) {
+      console.error(e);
+      callback(e, null);
+    });
+
+
   };
 
-  
+
   /*
       Calls the two API endpoints in parallel and the results 
       are processed by "function (err, result)""
@@ -70,8 +74,7 @@ app.get('/getPrices', function (request, response) {
       console.log(JSON.stringify(httpResponseObj));
       response.setHeader("Content-Type", "application/json");
       response.send(JSON.stringify(httpResponseObj));
-    } 
-    else {
+    } else {
       response.status(500).send("");
     }
 
