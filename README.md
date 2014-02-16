@@ -6,7 +6,7 @@ BTC_dashboard
 Instructions to run the app
 ===========================
 
-> In terminal, go to this folder
+> In terminal, navigate to this folder
 
 To install
 ==========
@@ -14,6 +14,6 @@ To install
 
 To run the server
 =================
- > sh run.sh
+> sh run.sh
 
 Point your browser to http://localhost:5000/ 
