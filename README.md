@@ -1,7 +1,7 @@
 BTC_dashboard
 =============
 
-> see assignment.md
+
 
 Instructions to run the app
 ===========================
